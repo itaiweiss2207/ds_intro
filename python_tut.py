@@ -1,4 +1,5 @@
 import numpy as np
+import datetime as dt
 
 
 def ex_22():
@@ -56,7 +57,58 @@ def ex_30():
     print(common_vec)
 
 def ex_31():
+    import warnings
+    warnings.filterwarnings("ignore", category=np.VisibleDeprecationWarning)
+def ex_32():
+    print(np.sqrt(-1) == np.emath.sqrt(-1))
+
+def ex_33():
+    yesterday = dt.datetime.now() + dt.timedelta(-1)
+    print(yesterday)
+    today = dt.datetime.now()
+    tomorrow = dt.datetime.now() + dt.timedelta(days=1)
+    print(today)
+    print(tomorrow)
+def ex_34():
+    start_of_july_2016 = dt.datetime(2016,7,1)
+    end_of_july_2016 = dt.datetime(2016,7,31)
+    all_dates_in_range = np.arange(start_of_july_2016.date(), end_of_july_2016.date())
+    print(all_dates_in_range)
+
+def ex_35():
+    A = np.random.randint(low=-10, high= 20, size=(3,3))
+    B = np.random.randint(low=-10, high=20, size=(3, 3))
+
+    print(A)
+    for row in range(len(A)):
+        for element in range(len(A[row])):
+            A[row][element] = (A[row][element] + B[row][element]) *(-A[row][element] / 2)
+    print(A)
+
+
+def ex_36():
+    mat = np.random.random(size=(3,3))
+    print(mat)
+
+    # method_1
+    mat_1 = mat//1
+    print(mat_1)
+
+    # method_2
+    mat_2 = np.floor(mat)
+    print(mat_2)
+
+    # method_3
+    mat_3 = mat.astype(int)
+    print(mat_3)
+
+    #method_4
+    mat_4 = np.int_(mat)
+    print(mat_4)
+
+
+def ex_37():
 
 
 if __name__ == '__main__':
-    ex_30()
+    ex_36()
