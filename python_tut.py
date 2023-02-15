@@ -1,3 +1,6 @@
+import random
+import timeit
+
 import numpy as np
 import datetime as dt
 
@@ -108,7 +111,93 @@ def ex_36():
 
 
 def ex_37():
+    mat = np.random.randint(low=-10, high=20, size=(5,5))
+    row_value = np.sum(mat[0])
+    for i, row in enumerate(mat[1:]):
+        while np.sum(row) != row_value:
+            row = np.random.randint(low=-10, high=20, size=(1,5))
+            mat[i] = row
+    print(mat)
+
+def int_gen():
+    for i in range(10):
+        yield random.randint(1, 20)
+
+def ex_38():
+    for i in int_gen():
+        print(i)
+    mat = np.array([])
+    for i in int_gen():
+        mat = np.append(mat, np.array([i]), axis=0)
+
+
+def ex_39():
+    exc = [0.0,1.0]
+    mat = np.random.uniform(0.0, 1.0, size=10)
+    while 0.0 in mat or 1.0 in mat:
+        mat = np.random.uniform(0.0, 1.0, size=10)
+    print(mat)
+
+def ex_40():
+    mat = np.random.randint(1,20, 10)
+    mat.sort()
+    print(mat)
+
+def ex_41():
+    mat = np.random.randint(1, 20, 10)
+    sum_1 = sum(mat)
+    sum_2 = mat.sum()
+    print(sum_1, sum_2)
+
+def ex_42():
+    mat_1 = np.random.randint(1, 20, 10)
+    mat_2 = np.random.randint(1, 20, 10)
+    print(mat_1, mat_2)
+    print(all(mat_1 == mat_2))
+
+def ex_43():
+    mat = np.arange(10)
+    mat.setflags(write=False)
+    print(mat)
+
+def ex_44():
+    coord_in_cartes = np.random.random((10,2))
+    radius = [np.hypot(cor[0], cor[1]) for cor in coord_in_cartes]
+    angle = [np.arctan2(cor[1], cor[0]) for cor in coord_in_cartes]
+    result = np.column_stack((radius, angle))
+    print(result)
+
+
+def ex_45():
+    vector = np.random.random(10)
+    print(vector)
+    max_value = np.max(vector)
+    for i, entry in enumerate(vector):
+        if entry == max_value:
+            vector[i] = 0
+    print(vector)
+
+
+def ex_46(x, y):
+    balanced_mat = np.array([[(i*(1/x), (1-j*(1/y))) for i in range(x)] for j in range(y)])
+    print(balanced_mat)
+
+def ex_47(X, Y):
+    C = np.zeros((len(X), len(Y)))
+    for i, Xi in enumerate(X):
+        for j, Yj in enumerate(Y):
+            C[i][j] = 1/(Xi - Yj)
+    print(C)
+
+
+def ex_50():
+    vector = np.array([1, 3, 5, 7, 9])
+    scalar = 6
+    index = np.abs(vector - scalar).argmin()
+    closest_value = vector[index]
+    print(closest_value)
+
 
 
 if __name__ == '__main__':
-    ex_36()
+    ex_49()
